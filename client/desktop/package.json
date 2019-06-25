@@ -1,0 +1,12 @@
+{
+  "name": "desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-link": "mklink /J \"C:/wamp64/www/dwwm-pg/wp-content/themes/alchem\" \"./themes/alchem\" && mklink /J \"C:/wamp64/www/dwwm-pg/wp-content/themes/alchem-enfant\" \"./themes/alchem-enfant\""
+  },
+  "author": "",
+  "license": "ISC"
+}
