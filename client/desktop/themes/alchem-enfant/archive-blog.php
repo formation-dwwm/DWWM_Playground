@@ -4,7 +4,7 @@ get_header();
 global  $alchem_page_meta,$alchem_blog_style, $alchem_css_class;
 $detect  = new Mobile_Detect;
 $sidebar ='none';
-$enable_page_title_bar     = alchem_option('enable_page_title_bar');
+// $enable_page_title_bar     = alchem_option('enable_page_title_bar');
 $page_title_bg_parallax    = esc_attr(alchem_option('page_title_bg_parallax'));
 $page_title_bg_parallax    = $page_title_bg_parallax=="yes"?"parallax-scrolling":"";
 $page_title_align          = esc_attr(alchem_option('page_title_align'));
@@ -13,8 +13,8 @@ $breadcrumbs_on_mobile     = esc_attr(alchem_option('breadcrumbs_on_mobile_devic
 $breadcrumb_menu_prefix    = esc_attr(alchem_option('breadcrumb_menu_prefix'));
 $breadcrumb_menu_separator = esc_attr(alchem_option('breadcrumb_menu_separator'));
 //$sidebar                   = isset($alchem_page_meta['page_layout'])?$alchem_page_meta['page_layout']:'none';
-//$left_sidebar              = esc_attr(alchem_option('left_sidebar_blog_archive'));
-//$right_sidebar             = esc_attr(alchem_option('right_sidebar_blog_archive'));
+$left_sidebar              = esc_attr(alchem_option('left_sidebar_blog_archive'));
+$right_sidebar             = esc_attr(alchem_option('right_sidebar_blog_archive'));
 if( $left_sidebar !='' )
 $sidebar ='left';
 if( $right_sidebar !='' )
@@ -95,7 +95,4 @@ $enable_page_title_bar = (isset($alchem_page_meta['display_title_bar']) && $alch
                 </div>
             </div>
       </article>
-
-</nav>
-
 <?php get_footer(); ?>
