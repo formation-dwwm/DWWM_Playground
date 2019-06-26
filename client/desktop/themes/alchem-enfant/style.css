@@ -7,3 +7,31 @@
  Template:     alchem 
  Version:      1.0.0
 */
+
+/*
+* body => margin-top: -32px !important;
+*/
+
+
+
+*{
+    /*box-sizing: border-box;*/
+    margin: 0;
+    padding: 0;
+}
+body {
+ background-color: transparent;
+ margin-top: 0px !important;
+ margin-bottom: 0px;
+}
+.navbar {
+    margin-bottom: 0px;
+}
+#footer{
+    background-color: #337ab7;
+    color: #ffffff;
+    margin-bottom: 0px;
+}
+.entry-box{
+    background-color:transparent;
+}

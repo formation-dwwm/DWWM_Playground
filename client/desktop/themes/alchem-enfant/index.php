@@ -14,4 +14,4 @@
 
 get_template_part('content','home');
 get_footer();
-get_header('blank'); 
+get_header('blank');
