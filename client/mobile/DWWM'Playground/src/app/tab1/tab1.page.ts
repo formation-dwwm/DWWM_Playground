@@ -10,15 +10,19 @@ import { ArticlesService } from '../articles.service';
 export class Tab1Page implements OnInit {
 
   listeArtic;
-
+ // Récupération de l'import ArticlesService via le constructeur
   constructor(
-    private articlesService : ArticlesService
+    private articlesService: ArticlesService
   ) {}
 
-  getArticles() : void {
+  buttonRoadmap = true;
+
+ // Fonction getArticles appellé sur ce component récupéré depuis ArticlesService
+  getArticles(): void {
     this.listeArtic = this.articlesService.getArticles();
   }
- ngOnInit(){
+// OnInit la fonction getArticles
+ ngOnInit() {
    this.getArticles();
  }
 }

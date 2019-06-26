@@ -10,7 +10,7 @@ import { listArticles } from './listeArticles';
 export class ArticlesService {
 
   constructor() { }
-
+// fonction pour récupérer la liste des articles depuis listArticles
   getArticles() {
     return listArticles;
   }

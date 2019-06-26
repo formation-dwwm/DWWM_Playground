@@ -1,17 +1,40 @@
-<ion-content class="contentStyle">
+<ion-toolbar padding="15">
+    <ion-buttons color="light" slot="start">
+        <ion-button class="buttonSearch">
+        </ion-button>
+    </ion-buttons>
+      <ion-img class="logoDWWM" src="../../assets/img/logo_DWWM.png"></ion-img>
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-button class="buttonSearch">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
 
+<ion-content class="contentStyle">
+<!-- Ceci est un composant Ionic "Card". -->
+      <!-- Insertion d'une boucle For avec *ngFor pour créer chaque articles selon ces propres informations -->
     <ion-card class="cardStyle" *ngFor="let article of listeArtic">
-        <ion-card-header class="imgStyle">
-          <ion-img></ion-img>
-        </ion-card-header>
-    
+      <ion-card-header class="imgStyle">
+        <img src="{{article.imageUrl}}"> 
+      </ion-card-header>
+        <!-- Insertion de données dynamiques -->
+        <!-- Ces données communiques avec un service "articles.service" -->
+      <div class="containerCard">
         <ion-card-title class="titleStyle">{{article.title}}</ion-card-title>
-        <ion-label>{{article.date}}</ion-label>
-        <ion-card-content>
+        <ion-card-content class="contentStyle">
           {{article.extrait}}
         </ion-card-content>
-        <ion-label>{{article.author}}</ion-label>
-        <ion-button margin="20" color="primary" class="buttonStyle">voir plus</ion-button>
+        <div class="footerContainer">
+          <div class="footerLabel">
+            <ion-label>{{article.author}} le </ion-label>
+            <ion-label>{{article.date}}</ion-label>
+          </div>
+          <!-- Insertion d'un button ionic -->
+          <ion-button margin="20" fill="clear" color="primary" class="buttonStyle">Afficher plus...</ion-button>
+        </div>
+      </div>
     </ion-card>
-
+<!-- Ceci est un composant Ionic "Card". -->
 </ion-content>
