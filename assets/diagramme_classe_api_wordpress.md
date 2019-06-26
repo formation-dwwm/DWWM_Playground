@@ -3,7 +3,7 @@
 
 ### obtenir la liste des posts:
 
-GET site.com/**wp-json/wp/v2/posts**
+GET http://wordpress/**wp-json/wp/v2/posts**
 
 Retourne une liste d'objet post.
 
@@ -62,6 +62,8 @@ Chacun de ses lien est un fichier JSON. voici les détail de chacun des fichiers
 
 **`author` :**
 
+http://wordpress/**wp-json/wp/v2/users**
+
 Donnée| definition
 -|-
 `id`_:number_| id de l'utilisateur
@@ -73,6 +75,8 @@ Donnée| definition
 `avatar_urls`| contient trois clé, (`avatar_urls.24`,`avatar_urls.48`,`avatar_urls.96`) pour les différente taille d'image
 
 **`replies` :**
+
+http://wordpress/**wp-json/wp/v2/comments**
 
 Contient une liste de tout les commentaire rataché au post. Voici le détail de chaque commentaire:
 
@@ -91,6 +95,8 @@ Donnée| definition
 `_links`| contient les clé `author`,`up`, et `in-reply-to` qui contienne chacune une clé `href` qui est le lien vers les JSON de, respectivement, l'auteur, le post et le commentaire parent
 
 **`wp:featuredmedia` et `wp:attachment` :**
+
+http://wordpress/**wp-json/wp/v2/media**
 
 Il pointe tout les deux vers un média qui ont la même structure:
 
@@ -163,6 +169,8 @@ Voici les détail de l'objet `media_details` :
 
 `categories`: 
 
+http://wordpress/**wp-json/wp/v2/categories**
+
 Donnée| definition
 -|-
 `id`_:number_| id de la catégorie
@@ -175,6 +183,8 @@ Donnée| definition
 `parent`_:number_ | id de la catégorie parente, vaut 0 si pas de parent
 
 `tags`:
+
+http://wordpress/**wp-json/wp/v2/tags**
 
 Donnée| definition
 -|-
