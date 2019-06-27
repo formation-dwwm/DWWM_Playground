@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { listArticles } from './listeArticles';
+
+import { ApiService, WordPressObject } from './api.service';
 // import { Tab1Page } from './tab1/tab1.page';
 //   import { from } from 'rxjs';
 
@@ -9,15 +10,30 @@ import { listArticles } from './listeArticles';
 })
 export class ArticlesService {
 
-  constructor() { }
+  constructor(private apiServ: ApiService) { }
 
-  protected DONNEE_URL: string = 'http://localhost:80/dwwm-pg/wp-json/wp/v2/posts';
 
-  // public post(myPost: string ){
-  //   return this.fetch(myPost);
-  // }
-// fonction pour récupérer la liste des articles depuis listArticles
-  getArticles() {
-    return listArticles;
+  // fonction pour récupérer la liste des articles depuis listArticles
+  public getArt(): Promise<WordPressObject[]>{
+    return this.fetch();
+  }
+
+  public getById(id: number): Promise<WordPressObject>{
+    return this.fetch(`/${id}`);
+  }
+
+  public getDatePubliAft(after:string): Promise<WordPressObject>{
+    return this.fetch(`?after=${after}`);
+  }
+  public getByDateSlug(slug:string):Promise<WordPressObject>{
+    return this.fetch(`?slug=${slug}`)
+  }
+
+  getByPages(page:number ):Promise<WordPressObject>{
+    return this.fetch(`?page=${page}`)
+  }
+
+  private fetch(path?: string): Promise<any> {
+    return this.apiServ.fetch(`posts${path ? path : ''}`);
   }
 }

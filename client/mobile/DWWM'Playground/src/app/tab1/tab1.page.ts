@@ -18,11 +18,13 @@ export class Tab1Page implements OnInit {
   buttonRoadmap = true;
 
  // Fonction getArticles appellé sur ce component récupéré depuis ArticlesService
-  getArticles(): void {
+  /*getArticles(): void {
     this.listeArtic = this.articlesService.getArticles();
-  }
+  }*/
 // OnInit la fonction getArticles
  ngOnInit() {
-   this.getArticles();
+   /*this.getArticles();*/
+
+   this.articlesService.getArt( ).then(artArr=>{this.listeArtic=artArr})
  }
 }
