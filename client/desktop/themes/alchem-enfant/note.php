@@ -15,4 +15,4 @@ function enqueue_bootstrap() {
   add_action( 'wp_enqueue_scripts', 'enqueue_bootstrap' );
 
 
-  ?php>
+  ?>

@@ -66,7 +66,7 @@ $enable_page_title_bar = (isset($alchem_page_meta['display_title_bar']) && $alch
              if ( have_posts() ) :
 			   ?>
              <?php while ( have_posts() ) : the_post(); ?>
-			<?php  get_template_part( 'content', 'article'.$alchem_blog_style ); ?>
+			<?php  get_template_part( 'content', 'article' ); ?>
 
 		<?php endwhile; // end of the loop. ?>
         <?php endif;?>
@@ -84,7 +84,7 @@ $enable_page_title_bar = (isset($alchem_page_meta['display_title_bar']) && $alch
                         </aside>
                     </div>
             <?php endif; ?>
-            <?php if( $sidebar == 'right' || $sidebar == 'both'  ): ?>        
+            <?php if( $sidebar == 'right' || $sidebar == 'both'  ): ?>
                     <div class="col-aside-right">
                         <div class="widget-area">
                            <?php get_sidebar('archiveright');?>
