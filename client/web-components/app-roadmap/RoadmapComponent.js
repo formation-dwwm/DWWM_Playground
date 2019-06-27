@@ -2,9 +2,13 @@
 const roadmapComponent = document.createElement('template');
 roadmapComponent.innerHTML = `
  <style>
+ @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
     img {
         width: 100%;
         height: auto;
+        border: 2px solid black;
+        border-top: none;
     }
  </style>
 <div id="roadmapNav">
@@ -17,10 +21,15 @@ roadmapComponent.innerHTML = `
          </label>
      <style>
             #roadmapNav{
+                font-family: 'Open Sans', sans-serif;
+                font-size: 150%;
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-                background-color: grey;
+                background-color: #d6d6d6;
+                -webkit-box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.75);
             }
 
              .onoffswitch {
@@ -74,10 +83,10 @@ roadmapComponent.innerHTML = `
  
  
  
- <div id="backEnd">
+ <div id="backEnd" class="roadmap-container">
      <img id="myImg" src="img/roadmap_back.png" usemap="#image_back">
      <map name="image_back">
-         <area alt="Scripting Language" title="Scripting Language" href="#scriptingLanguage" coords=",304,816,337" shape="rect">
+         <area alt="Scripting Language" title="Scripting Language" href="#scriptingLanguage" coords="419,304,816,337" shape="rect">
          <area alt="Functional Language" title="Functional Language" href="#functionalLanguage" coords="421,350,817,384" shape="rect">
          <area alt="Python" title="Python" href="#python" coords="881,214,1021,251" shape="rect">
          <area alt="" title="" href="" coords="884,264,885,267" shape="rect">
@@ -110,7 +119,7 @@ roadmapComponent.innerHTML = `
  
  
  
- <div id="frontEnd">
+ <div id="frontEnd" class="roadmap-container">
      <img id="myImg" src="img/frontend.png" usemap="#image_front">
      <map name="image_front">
        <area alt="HTML" title="HTML" href="#HTML" coords="397,283,644,334" shape="rect">
@@ -142,49 +151,58 @@ class RoadmapComponent extends HTMLElement{
         super(); // call super() => HTMLElement
         this.root = this.attachShadow({'mode': 'open'});
         this.root.appendChild(roadmapComponent.content.cloneNode(true));
-        this.sizeImg;//.offsetWidth // create instance in shadowdom
-        //this.sizeImg.addEventListener('load', () => this.adaptToViewSize());
+        this.images = this.root.querySelectorAll('img');
+        Array.from(this.images).map((img) => img.addEventListener('load', () => this.adaptToViewSize()));
         this.toggle = this.root.getElementById('myonoffswitch');
         this.toggle.addEventListener('click', this.isChecked.bind(this));
         window.addEventListener('resize', this.onResize.bind(this));        
     }
 
     onResize() {
+        console.log("resize");
         this.adaptToViewSize(this.isChecked());
-        //console.log(this.sizeImg.naturalWidth)
     }
+
     isChecked() {
         let back = this.root.getElementById('backEnd');
         let front = this.root.getElementById('frontEnd');
         if (this.toggle.checked){
             back.style.display = "block";
             front.style.display = "none";
-            return "backEnd";
+            //return "backEnd";
         } else {
             back.style.display = "none" ;
             front.style.display = "block";
-            return "frontEnd";
+            //return "frontEnd";
         }
     }
-    adaptToViewSize(side) {
-        let sideArea = roadmapComponent.content.getElementById(side);
-        let origAreas = sideArea.querySelectorAll('area');
-        let sideAreaAll = this.root.getElementById(side);
-        let allArea = sideAreaAll.querySelectorAll('area');
-        this.sizeImg = sideArea.querySelector("img");
-        let widthOrigin = this.sizeImg.naturalWidth;
-        let ratio = ((this.sizeImg.width) / widthOrigin)
+    adaptToViewSize() {        
 
-        for (let [index, element] of allArea.entries()) {
-            let tampon = origAreas[index].coords.split(",");
-            let newVal = tampon.map((x) => parseInt(x) * ratio);
-            element.coords = newVal.join(',');
+        let containers = Array.from(this.root.querySelectorAll('.roadmap-container'));
+        let containersOrig = roadmapComponent.content.querySelectorAll('.roadmap-container');
+
+        let displayedWidth = this.root.querySelectorAll('img')[this.toggle.checked ? 0 : 1].width;
+
+        for (let idx in containers)
+        {
+            let div = containers[idx];
+            let img = div.querySelector("img");
+            let allArea = div.querySelectorAll('area');
+            let origAreas = containersOrig[idx].querySelectorAll('area');
+            let widthOrigin = img.naturalWidth;
+            let ratio = (displayedWidth / widthOrigin)
+            
+            let coords = [];
+            for (let [index, element] of allArea.entries()) {
+                let tampon = origAreas[index].coords.split(",");
+                let newVal = tampon.map((x) => parseInt(x) * ratio);
+                coords.push([tampon, newVal]);
+                element.coords = newVal.join(',');
+            }     
         }
-
     }
     connectedCallback(){
-       this.isChecked.bind(this)();
-        //this.adaptToViewSize();
+        this.isChecked();
     }
 
     static Register() {
