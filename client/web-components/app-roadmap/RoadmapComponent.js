@@ -152,6 +152,7 @@ class RoadmapComponent extends HTMLElement{
         this.root = this.attachShadow({'mode': 'open'});
         this.root.appendChild(roadmapComponent.content.cloneNode(true));
         this.images = this.root.querySelectorAll('img');
+        this.addEventListener('click', (e) => (e.path[0].tagName === 'AREA' ?  this.SendEventToDOM(e.path[0]) : undefined))
         Array.from(this.images).map((img) => img.addEventListener('load', () => this.adaptToViewSize()));
         this.toggle = this.root.getElementById('myonoffswitch');
         this.toggle.addEventListener('click', this.isChecked.bind(this));
@@ -203,6 +204,16 @@ class RoadmapComponent extends HTMLElement{
     }
     connectedCallback(){
         this.isChecked();
+    }
+
+    SendEventToDOM(elem) {
+        var event = new CustomEvent('nodeClick', { 
+            'detail': elem.href.split('#')[1], // if need # add '#' +
+            'bubbles': true,
+            'cancelable': true
+        });
+
+        this.dispatchEvent(event);
     }
 
     static Register() {
