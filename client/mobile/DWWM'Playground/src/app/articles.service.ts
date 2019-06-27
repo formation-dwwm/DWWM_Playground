@@ -10,6 +10,12 @@ import { listArticles } from './listeArticles';
 export class ArticlesService {
 
   constructor() { }
+
+  protected DONNEE_URL: string = 'http://localhost:80/dwwm-pg/wp-json/wp/v2/posts';
+
+  // public post(myPost: string ){
+  //   return this.fetch(myPost);
+  // }
 // fonction pour récupérer la liste des articles depuis listArticles
   getArticles() {
     return listArticles;
