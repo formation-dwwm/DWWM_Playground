@@ -11,7 +11,8 @@ export class ArticlesService {
 
   constructor() { }
 
-  protected DONNEE_URL: string = 'http://localhost:80/dwwm-pg/wp-json/wp/v2/posts';
+  // protected DONNEE_URL: string = 'http://localhost:80/dwwm-pg/wp-json/wp/v2/posts';
+  urlAPI = "http://10.121.113.2/dwwm-pg/wp-json/wp/v2/posts";
 
   // public post(myPost: string ){
   //   return this.fetch(myPost);
