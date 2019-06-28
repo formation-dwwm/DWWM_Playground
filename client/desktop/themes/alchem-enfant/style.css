@@ -13,85 +13,163 @@
 */
 
 *{
-    /*box-sizing: border-box;*/
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 body {
- background-color: white;
- margin-top: 0px !important;
- margin-bottom: 0px;
-}
-.navbar {
+    background-color: white;
+    margin-top: 0px !important;
     margin-bottom: 0px;
-}
-#footer{
-    background-color: #337ab7;
-    color: #ffffff;
-    margin-bottom: 0px;
-}
-.entry-box{
-    background-color:transparent;
+    height: 100vh;
 }
 
-article {
-    /* background-color: white; */
-    padding: 0;
+/* ---- NAVBAR HEADER ---- */
+
+.navbar {
+    background-color: rgb(52,199,255);
+    border-radius: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    z-index: 1;
 }
+
+.navbar:not(#footer) {
+    position: fixed;
+}
+
+.navbar-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-nav a{
+    color: white !important;
+}
+
+#logoDwwm{
+    height: 100%;
+}
+
+/* ---- CONTENU ---- */
+
 .container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100vw;
-    background-color: #F0F0F0;
+    width: 100%;
 }
+
 .post-inner {
-    padding: 10px;
-    background-color: #F0F0F0;
-    margin: 20px;
+    display: flex;
+    padding: 60px 10px 0px 10px;
+    margin: 20px 20px 0px 20px;
+    justify-content: center;
 }
-.articleMain {
-    width: 90vw;
+
+.col-main{
+    display: flex;
+    justify-content: center;
 }
+
+/* ---- ARTICLE ---- */
+
+.articleMain{
+    border-radius: 10px;
+    box-shadow: 0 0px 28px rgba(0,0,0,0.2), 0 5px 5px rgba(0,0,0,0.05);
+    overflow: hidden;
+    margin: 0px 0px 30px 0px;
+}
+
 .articleSection {
-    width: 90vw;
-    margin: 0;
+    width: 100%;
+    height: 250px;
     padding: 0;
     background-color: red;
     background-color: white;
-    border-radius: 10px solid rgb(99, 97, 97);
 }
+
+/* ---- Article image */
+
 .articleImg {
+    height: 100%;
     text-align: center;
+    max-width: 100%;
+    padding-left: 0px;
 }
+
+.wp-post-image{
+    height: 100%;
+    width: 100%;
+    position: center;
+    overflow: hidden;
+    
+}
+
+/* ---- Article contenu */
+
+.articleCard {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.articleheader{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px 15px 0px;
+}
+
 .articleTitle {
+    margin: 0px 0px 0px 0px;
     font-size: 2.5rem;
 }
-.articleCard {
-    height: 26vh;
-    margin: 0;
-}
-.btnTag {
-    font-size: 1.2rem;
-    padding: 0 .2em 0 .2em;
-    background-color: #F0F0F0;
-    margin: .2em .6em 1em 0;
-}
+
 .articleLink {
-    font-size: 1.2rem;
-    padding: .1em;
+    display: flex;
+    border-radius: 10px;
     background-color: #F0F0F0;
-    width: 30vw;
-    text-align: center;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
 }
+
 .articleText {
-    font-size: 1.2rem;
+    margin-top: 10px;
+    width: 100%;
+    height: 50%;
+    font-size: 1.5rem;
     text-align: justify;
 }
 
+.btn-normal{
+    background-color: rgb(52,199,255);
+    float: right;
+    border-radius: 10px;
+}
 
-@media screen and (min-width: 540px) and (max-width: 740px) {
+/* ---- NAVBAR FOOTER ---- */
+
+#footer{
+    background-color: rgb(52,199,255);
+    color: #ffffff;
+    margin-bottom: 0px;
+}
+
+.btn-normal{
+    background-color: rgb(52,199,255) !important;
+}
+
+.entry-box{
+    background-color:transparent;
+}
+
+/* ---- RESPONSIVE ---- */
+
+/* @media screen and (min-width: 540px) and (max-width: 740px) {
     .post-inner {
         max-width: 250px;
         height: 60vh;
@@ -157,6 +235,7 @@ article {
     }
 
 }
+*/
 
 /* le css pour la partie vue article*/
 
