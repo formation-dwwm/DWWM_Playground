@@ -1,7 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ArticlesService } from '../articles.service';
+import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
+import { WordPressObject } from '../api.service';
+import { listArticles } from '../listeArticles';
 
+export interface Article{
+id:number,
+title:string,
+content:string,
+date:string,
+author:number,
+
+}
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -23,8 +34,39 @@ export class Tab1Page implements OnInit {
   }*/
 // OnInit la fonction getArticles
  ngOnInit() {
-   /*this.getArticles();*/
+this.articlesService.getArt().then((wpArticles:WordPressObject[])=>{
+ this.listeArtic= this.transformArticles(wpArticles);
+})
+ }
+ 
+ transformArticles(wpArticles:WordPressObject[]):Article[]{
+   return wpArticles.map((article: WordPressObject, index: number, array: WordPressObject[]) => { 
+     return this.transformArticle(article)
+   })
 
-   this.articlesService.getArt( ).then(artArr=>{this.listeArtic=artArr})
+   
+ }
+ 
+ transformArticle(wpArticle:WordPressObject):Article{
+   return{
+     id:wpArticle.id,
+     title:wpArticle.title.rendered,
+     content:wpArticle.content.rendered,
+     author:wpArticle.author,
+     date:wpArticle.date,
+
+   }
+
  }
 }
+
+
+
+
+
+
+
+
+/*this.getArticles();*/
+
+   //this.articlesService.getArt( ).then(artArr=>{this.listeArtic=artArr})//

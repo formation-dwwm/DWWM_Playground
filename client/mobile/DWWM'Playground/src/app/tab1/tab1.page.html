@@ -23,9 +23,9 @@
         <!-- Insertion de données dynamiques -->
         <!-- Ces données communiques avec un service "articles.service" -->
       <div class="containerCard">
-        <ion-card-title class="titleStyle">{{article.title.rendered}}</ion-card-title>
-        <ion-card-content class="contentStyle">
-          {{article.extrait}}
+        <ion-card-title class="titleStyle">{{article.title}}</ion-card-title>
+        <ion-card-content [innerHTML]="article.content" class="contentStyle">
+          {{article.content}}
         </ion-card-content>
         <div class="footerContainer">
           <div class="footerLabel">
