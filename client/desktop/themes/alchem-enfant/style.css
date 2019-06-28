@@ -157,3 +157,21 @@ article {
     }
 
 }
+
+/* le css pour la partie vue article*/
+
+.img-box {
+    max-width: 100%;
+ 
+}
+.entry-header h1{
+    text-align: center;
+    font-size: 80px;
+    font-family: emoji;
+    margin-bottom:50px;
+}
+.info-post {
+    margin-bottom: 100px;
+    text-align: left;
+    font-family: emoji;
+}
