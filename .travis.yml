@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - node
+branches:
+  only:
+  - mobile-dev
+before_script:
+  - cd "client/mobile/DWWM'Playground"
+  - npm install -g ionic cordova
+  - npm install
+script:
+  - cd "client/mobile/DWWM'Playground"
+  - npm run lint
+  - npm run build
